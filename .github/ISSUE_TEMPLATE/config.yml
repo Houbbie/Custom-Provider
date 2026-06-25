@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security or Code of Conduct report
+    url: https://github.com/Houbbie/Custom-Provider/security/advisories/new
+    about: Report a vulnerability or a Code of Conduct concern privately. Do not open a public issue.
+  - name: Parallels RAS Custom Provider Framework documentation
+    url: https://docs.parallels.com/landing/ras-cpf-integration-guide/custom-provider-framework
+    about: Official Parallels documentation for the framework.

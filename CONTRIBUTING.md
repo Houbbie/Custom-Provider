@@ -9,6 +9,9 @@ Everything here is provided as is, without warranty of any kind, under the
 [MIT License](LICENSE). By contributing you agree your contribution is licensed
 the same way. See the disclaimer in the [README](README.md).
 
+This project follows a [Code of Conduct](CODE_OF_CONDUCT.md). By participating
+you are expected to uphold it.
+
 ## 1. Folder layout
 
 Create one folder per platform, lowercase, named after the platform. Mirror the

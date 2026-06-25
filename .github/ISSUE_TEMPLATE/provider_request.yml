@@ -1,0 +1,54 @@
+name: New provider / enhancement
+description: Propose a new platform provider or an improvement to an existing one
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to propose a new platform integration or an enhancement to an
+        existing sample. Contributions are welcome; see
+        [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: The hypervisor or cloud platform this is about.
+      placeholder: e.g. oVirt, Hyper-V, Nutanix AHV, OpenNebula
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What are you proposing
+      description: Describe the new provider or the enhancement and the use case.
+    validations:
+      required: true
+  - type: input
+    id: api
+    attributes:
+      label: Platform API
+      description: Link to the API the provider would use.
+      placeholder: e.g. https://...
+  - type: dropdown
+    id: level
+    attributes:
+      label: Target functionality level
+      description: See the framework guide for what each level requires.
+      options:
+        - Basic (enumeration and control, no templates)
+        - Full clones
+        - Link clones
+        - Template versions
+        - Not sure yet
+    validations:
+      required: true
+  - type: dropdown
+    id: contribute
+    attributes:
+      label: Are you offering to contribute it?
+      options:
+        - "Yes, I plan to open a pull request"
+        - "Maybe, with some guidance"
+        - "No, this is a request"
+    validations:
+      required: true

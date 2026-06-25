@@ -1,0 +1,74 @@
+name: Bug report
+description: Report a problem with a sample provider or the test harness
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. These scripts are samples
+        provided as is, without warranty. Do not paste real credentials, tokens
+        or secrets anywhere in this issue.
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Provider
+      description: Which provider or component is affected?
+      options:
+        - basic (skeleton)
+        - proxmox
+        - OpenShift (KubeVirt)
+        - hpe-vme (Morpheus)
+        - xcp-ng (XenAPI)
+        - virtuozzo (OpenStack)
+        - test harness (CustomProvider.psd1 / .psm1 / Test-*.ps1)
+        - other / not sure
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Describe the problem and what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The exact calls or commands you ran (with secrets removed).
+      placeholder: |
+        1. Configured CustomProvider.psd1 with ...
+        2. Ran Test-...ps1 ...
+        3. Saw ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output / errors
+      description: Relevant output or error messages. Remove tokens, hostnames and any secrets.
+      render: text
+  - type: input
+    id: ras-version
+    attributes:
+      label: Parallels RAS version
+      placeholder: e.g. 21.2
+  - type: input
+    id: powershell
+    attributes:
+      label: PowerShell version
+      placeholder: e.g. PowerShell 7.4 / Windows PowerShell 5.1
+  - type: input
+    id: platform-version
+    attributes:
+      label: Target platform version
+      placeholder: e.g. Proxmox VE 8.2, OpenShift 4.16
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmation
+      options:
+        - label: I removed all credentials, tokens and secrets from this report.
+          required: true
+        - label: I understand these scripts are samples provided as is, without warranty.
+          required: true
