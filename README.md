@@ -1,5 +1,7 @@
 # Parallels RAS Custom Provider Framework
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Sample providers and a test harness for the Parallels RAS **Custom Provider
 Framework (CPF)**. CPF lets you integrate hypervisors and platforms that RAS
 does not support as built-in Tier 1 providers. A provider is a script that
