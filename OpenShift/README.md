@@ -98,3 +98,5 @@ You can also drive it by hand, one JSON request per line on stdin:
   `guests/control`. IP and guest-OS reporting requires the guest agent.
 - This is a sample. Review RBAC, TLS validation and secret handling before
   using it in production.
+- Provided as is, without warranty. See the disclaimer in the root
+  [README](../README.md) and the [LICENSE](../LICENSE).

@@ -5,6 +5,10 @@ folder per platform (`proxmox/`, `OpenShift/`, `hpe-vme/`). This guide explains
 how to add a new provider folder. Read the [repository README](README.md) for
 the framework overview first.
 
+Everything here is provided as is, without warranty of any kind, under the
+[MIT License](LICENSE). By contributing you agree your contribution is licensed
+the same way. See the disclaimer in the [README](README.md).
+
 ## 1. Folder layout
 
 Create one folder per platform, lowercase, named after the platform. Mirror the

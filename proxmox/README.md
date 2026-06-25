@@ -94,3 +94,5 @@ If you need the legacy sample, use `Parallels-RAS-CFP-Proxmox-package2.ps1`.
 - Use snapshot names like `RAS_TEMPLATE_VERSION_X` for versioning.
 - When `template_method = 'versioning'`, clones can target named version snapshots.
 - `CustomProvider.psd1` must reference the v2 script for the versioning workflow.
+- Provided as is, without warranty. See the disclaimer in the root
+  [README](../README.md) and the [LICENSE](../LICENSE).

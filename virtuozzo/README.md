@@ -80,3 +80,5 @@ The shared harness scripts in `../proxmox/tests/` also work once
 - IP/MAC/OS reporting depends on what Nova returns for the server.
 - This is a sample. Review Keystone roles, TLS validation and secret handling
   before production use.
+- Provided as is, without warranty. See the disclaimer in the root
+  [README](../README.md) and the [LICENSE](../LICENSE).

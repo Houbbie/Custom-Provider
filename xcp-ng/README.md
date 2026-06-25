@@ -76,3 +76,5 @@ The shared harness scripts in `../proxmox/tests/` also work once
   installed in the VM.
 - This is a sample. Review RBAC, TLS validation and secret handling before
   production use.
+- Provided as is, without warranty. See the disclaimer in the root
+  [README](../README.md) and the [LICENSE](../LICENSE).

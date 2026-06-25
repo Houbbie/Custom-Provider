@@ -28,3 +28,8 @@ logic and the remaining CPF methods as described in
 ```powershell
 '{"method":"provider/initialize"}' | pwsh -File .\Parallels-RAS-CFP-Basic.ps1
 ```
+
+## Notes
+
+- Provided as is, without warranty. See the disclaimer in the root
+  [README](../README.md) and the [LICENSE](../LICENSE).
