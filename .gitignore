@@ -1,0 +1,24 @@
+# Local provider configuration may contain real credentials (tokens, secrets,
+# passwords). Keep anything local out of the repository.
+*.local.psd1
+*.local.ps1
+*.secret
+*.secrets
+secrets.*
+.env
+.env.*
+
+# Logs and test / run artifacts
+*.log
+logs/
+test-output/
+TestResults/
+*.trx
+
+# Editor / OS cruft
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*~
+~$*
