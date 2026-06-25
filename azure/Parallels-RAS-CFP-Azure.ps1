@@ -159,8 +159,9 @@ function Get-AzureToken {
     if ($PSVersionTable.PSEdition -eq 'Core' -and $SkipTls) { $irm.SkipCertificateCheck = $true }
 
     $resp = Invoke-RestMethod @irm
+    $token     = if (Test-HasProperty -Object $resp -Name 'access_token') { [string]$resp.access_token } else { '' }
     $expiresIn = if (Test-HasProperty -Object $resp -Name 'expires_in') { [int]$resp.expires_in } else { 3600 }
-    return @{ token = [string]$resp.access_token; expires = (Get-Date).AddSeconds($expiresIn) }
+    return @{ token = $token; expires = (Get-Date).AddSeconds($expiresIn) }
 }
 
 function Get-Session {
@@ -595,7 +596,11 @@ function Handle-GuestConvert {
 
         if ($isTemplate) {
             # Capture the VM into a managed image, then tag the VM as a template.
-            # For a bootable image the VM should be generalized first (see notes).
+            # IMPORTANT: the source VM must already be generalized (sysprep on
+            # Windows, waagent deprovision on Linux, then deallocate + generalize).
+            # This connector cannot sysprep inside the guest, so it captures the VM
+            # as-is; a non-generalized source yields an image that cannot boot a
+            # working clone. See azure/README.md and azure/Azure-API.md.
             $vmResourceId = Get-VmPath -Name $name
             $imageBody = @{
                 location   = $session.location
@@ -657,18 +662,27 @@ function Handle-GuestClone {
         if ($null -eq $image) {
             return New-ErrorResponse -Code $script:ErrorCodes.InvalidParams -Message "$($script:ProviderNamePrefix) Template image [$imageName] not found; convert the source VM to a template first"
         }
+        $imageState = ''
+        if ((Test-HasProperty -Object $image -Name 'properties') -and (Test-HasProperty -Object $image.properties -Name 'provisioningState')) {
+            $imageState = ([string]$image.properties.provisioningState).ToLowerInvariant()
+        }
+        if ($imageState -ne 'succeeded') {
+            return New-ErrorResponse -Code $script:ErrorCodes.InvalidParams -Message "$($script:ProviderNamePrefix) Template image [$imageName] is not ready (provisioningState=$imageState); wait for the convert task to complete before cloning"
+        }
         $imageId = [string]$image.id
 
         # Determine VM size and OS type from the source VM.
         $src = Get-Vm -Name $sourceId
         if ($null -eq $src) { throw "Source VM [$sourceId] not found" }
         $vmSize = 'Standard_B2s'
-        if ((Test-HasProperty -Object $src.properties -Name 'hardwareProfile') -and
+        if ((Test-HasProperty -Object $src -Name 'properties') -and
+            (Test-HasProperty -Object $src.properties -Name 'hardwareProfile') -and
             (Test-HasProperty -Object $src.properties.hardwareProfile -Name 'vmSize')) {
             $vmSize = [string]$src.properties.hardwareProfile.vmSize
         }
         $osType = 'Windows'
-        if ((Test-HasProperty -Object $src.properties -Name 'storageProfile') -and
+        if ((Test-HasProperty -Object $src -Name 'properties') -and
+            (Test-HasProperty -Object $src.properties -Name 'storageProfile') -and
             (Test-HasProperty -Object $src.properties.storageProfile -Name 'osDisk') -and
             (Test-HasProperty -Object $src.properties.storageProfile.osDisk -Name 'osType')) {
             $osType = [string]$src.properties.storageProfile.osDisk.osType
