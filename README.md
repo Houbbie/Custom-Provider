@@ -13,6 +13,19 @@ line to stdin, and the provider replies with one JSON object per line on stdout.
 > not been validated against a live system. Review, test and adapt them before
 > any production use.
 
+> [!WARNING]
+> **Disclaimer.** This is a personal project, shared in a personal capacity. It
+> is **not** official Parallels software, **not** part of the Parallels RAS
+> product, and **not** supported, endorsed or maintained by Parallels or Alludo.
+> The scripts are provided "as is", without warranty of any kind, express or
+> implied. They can break, they are not production ready, and using them is
+> entirely at your own risk. Test everything in an isolated lab before going
+> anywhere near production, and validate against the official
+> [Custom Provider Framework documentation](https://docs.parallels.com/landing/ras-cpf-integration-guide/custom-provider-framework).
+> Per the framework's shared-responsibility model, the provider script and the
+> platform automation it performs remain entirely the author's responsibility,
+> not a Parallels support obligation. Views expressed here are my own.
+
 ## Repository structure
 
 ```
