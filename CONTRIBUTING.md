@@ -167,12 +167,56 @@ $e
 - Keep commits focused and describe what changed and why. Open a PR against
   `main`; each provider folder should be self-contained.
 
-## Checklist
+## New provider checklist
 
-- [ ] `<platform>/Parallels-RAS-CFP-<Platform>.ps1` implements the CPF methods
-- [ ] `provider/initialize` advertises accurate capabilities
-- [ ] States mapped to the standard power-state values
-- [ ] Async operations return a resolvable `task_id`
-- [ ] `<platform>/README.md` added; root README Providers table updated
-- [ ] Script parses clean; tested with the shared harness
-- [ ] Secrets handled as secure settings; TLS validation documented
+Copy this into your pull request and tick each item. It mirrors sections 1 to 8
+above.
+
+**Layout and naming**
+- [ ] New folder `<platform>/`, lowercase, named after the platform
+- [ ] Provider script named `Parallels-RAS-CFP-<Platform>.ps1`
+- [ ] Platform-specific files kept inside the folder; the shared harness untouched
+
+**Protocol**
+- [ ] One JSON object per request on stdin, one JSON response per line on stdout
+- [ ] Nothing else is written to stdout (logs go to a file)
+- [ ] Success replies carry `result`; failures carry `error` with `code` and `message`
+- [ ] Identifiers, control values, IPs and MACs are encoded as strings
+- [ ] All applicable CPF methods implemented (`provider/*`, `guests/*`, `tasks/get`)
+- [ ] `guests/get` returns `name`, `state`, `ip_addresses`, `mac_addresses`, `is_template`
+- [ ] Native power states mapped to the standard values (`powered_off`, `powering_off`, `powered_on`, `powering_on`, `suspended`, `suspending`)
+
+**Capabilities**
+- [ ] `provider/initialize` advertises accurate capabilities and a `version`
+- [ ] `can_suspend_guests` only set when `guests/control` implements suspend
+- [ ] `template_method` matches reality (`versioning`, the image/template model, or omitted)
+- [ ] `can_link_clones` reflects actual support
+
+**Asynchronous tasks**
+- [ ] Long-running ops (clone, convert, snapshot, revert) return a `task_id`
+- [ ] `task_id` encodes enough to resolve status in `tasks/get`
+- [ ] `tasks/get` returns `running` / `completed` / `failed`
+
+**Configuration**
+- [ ] Works when launched via `CustomProvider.psd1` (CommandPath / CommandArgs / CustomSettings)
+- [ ] Connection settings consumed in `provider/connect`, secrets marked as secure variables
+
+**Testing**
+- [ ] Script parses with no errors (`Parser::ParseFile`, see section 5)
+- [ ] Verified against the shared harness (`proxmox/tests/Test-*.ps1`)
+- [ ] Optional: a dedicated `<platform>/tests/Test-<Platform>.ps1`, paths resolved from `$PSScriptRoot`
+- [ ] Validation status stated honestly (tested against a live system, or sample only)
+
+**Documentation**
+- [ ] `<platform>/README.md` added (files, requirements, config, methods, capabilities, limitations)
+- [ ] Provider added to the Providers table in the root [README.md](README.md)
+- [ ] Optional `<platform>/<Platform>-API.md` cites official sources
+- [ ] "Provided as is, without warranty" note included, linking the root README and LICENSE
+
+**Security**
+- [ ] No tokens, passwords or API keys committed (use least-privilege, secure variables)
+- [ ] TLS validation defaults to on; any certificate-check skip is an opt-in, documented setting
+
+**Style and PR**
+- [ ] Matches existing scripts (PascalCase functions, `Set-StrictMode`, structured CPF errors, file logging)
+- [ ] Provider folder is self-contained; PR opened against `main` with a clear description
