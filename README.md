@@ -271,3 +271,8 @@ A condensed overview of the framework is in
 
 Official Parallels RAS Custom Provider Framework documentation:
 https://docs.parallels.com/landing/ras-cpf-integration-guide/custom-provider-framework
+
+## License
+
+Released under the [MIT License](LICENSE). The software is provided "as is",
+without warranty of any kind; see the disclaimer above.
