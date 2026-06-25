@@ -7,6 +7,11 @@ and this project aims to follow [Semantic Versioning](https://semver.org/spec/v2
 
 ## [Unreleased]
 
+### Added
+- Microsoft Azure provider in `azure/` (Azure Resource Manager REST API:
+  Entra ID service-principal auth, VM lifecycle, managed-image full clones),
+  with `Azure-API.md` and a dedicated `tests/Test-Azure.ps1`.
+
 ## [0.4.0] - 2026-06-24
 
 ### Added

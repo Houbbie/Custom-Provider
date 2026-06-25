@@ -11,7 +11,7 @@ line to stdin, and the provider replies with one JSON object per line on stdout.
 
 > [!IMPORTANT]
 > Only the **Proxmox VE** provider (`proxmox/`) has been tested and validated.
-> The OpenShift, HPE VM Essentials, XCP-ng and Virtuozzo providers are
+> The OpenShift, HPE VM Essentials, XCP-ng, Virtuozzo and Azure providers are
 > reference samples built against each platform's API documentation; they have
 > not been validated against a live system. Review, test and adapt them before
 > any production use.
@@ -72,6 +72,7 @@ virtuozzo/                     Virtuozzo Hybrid Infrastructure (OpenStack) provi
 | HPE VM Essentials (Morpheus API) | `hpe-vme/` | Sample, not validated | [hpe-vme/README.md](hpe-vme/README.md) |
 | XCP-ng (XenAPI) | `xcp-ng/` | Sample, not validated | [xcp-ng/README.md](xcp-ng/README.md) |
 | Virtuozzo Hybrid Infrastructure (OpenStack) | `virtuozzo/` | Sample, not validated | [virtuozzo/README.md](virtuozzo/README.md) |
+| Microsoft Azure (ARM REST API) | `azure/` | Sample, not validated | [azure/README.md](azure/README.md) |
 | Generic skeleton | `basic/` | Reference skeleton | [basic/README.md](basic/README.md) |
 
 ## How it works
