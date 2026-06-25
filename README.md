@@ -1,6 +1,7 @@
 # Parallels RAS Custom Provider Framework
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PowerShell 7+](https://img.shields.io/badge/PowerShell-7%2B-5391FE.svg?logo=powershell&logoColor=white)](https://github.com/PowerShell/PowerShell)
 
 Sample providers and a test harness for the Parallels RAS **Custom Provider
 Framework (CPF)**. CPF lets you integrate hypervisors and platforms that RAS
