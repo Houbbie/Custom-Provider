@@ -7,6 +7,8 @@ and this project aims to follow [Semantic Versioning](https://semver.org/spec/v2
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-06-25
+
 ### Added
 - Microsoft Azure provider in `azure/` (Azure Resource Manager REST API:
   Entra ID service-principal auth, VM lifecycle, managed-image full clones),
@@ -56,6 +58,7 @@ and this project aims to follow [Semantic Versioning](https://semver.org/spec/v2
   snapshot-based template versioning.
 - `Parallels-RAS-CFP-Basic.ps1` minimal provider skeleton.
 
-[Unreleased]: https://github.com/Houbbie/Custom-Provider/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/Houbbie/Custom-Provider/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/Houbbie/Custom-Provider/releases/tag/v0.5.0
 [0.4.0]: https://github.com/Houbbie/Custom-Provider/releases/tag/v0.4.0
 [0.3.0]: https://github.com/Houbbie/Custom-Provider/releases/tag/v0.3.0
