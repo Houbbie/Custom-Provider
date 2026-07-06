@@ -636,6 +636,11 @@ function Remove-AllProxmoxVmSnapshots {
     foreach ($snapshot in $snapshots) {
         if ($snapshot.PSObject.Properties.Name -contains 'name' -and -not [string]::IsNullOrWhiteSpace([string]$snapshot.name)) {
             $snapshotName = [string]$snapshot.name
+            if ($snapshotName -eq 'current') {
+                # Proxmox always lists a pseudo-entry named "current" representing the VM's
+                # live state; it is not a real snapshot and cannot be deleted via qmdelsnapshot.
+                continue
+            }
             Write-DebugLog "Deleting snapshot [$snapshotName] for VM [$VmId] on node [$Node] before template conversion"
             $taskId = Delete-ProxmoxVmSnapshot -Node $Node -VmId $VmId -SnapshotName $snapshotName
             Wait-ProxmoxTaskCompletion -TaskId $taskId -TimeoutSeconds 120 -PollIntervalSeconds 5
