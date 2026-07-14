@@ -4,6 +4,10 @@ Sample Parallels RAS Custom Providers that integrate **Proxmox VE** as a VDI
 provider through the Proxmox REST API. See the [repository README](../README.md)
 for the framework overview and the shared test harness.
 
+Deploying against a Ceph-backed cluster? See [PREREQUISITES.md](PREREQUISITES.md)
+for the customer-facing checklist (API token scope, Ceph-specific timing and
+storage notes, RAS-server setup, template requirements).
+
 ## Files
 
 - `Parallels-RAS-CFP-Proxmox-package2-v2.ps1` — recommended provider, with
